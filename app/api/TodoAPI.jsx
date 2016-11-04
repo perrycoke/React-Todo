@@ -20,6 +20,7 @@ module.exports = {
 		return $.isArray(todos) ? todos : [];
 	},
 	filterTodos(todos, showCompleted, searchText) {
+		searchText = searchText.toLowerCase();
 		var filteredTodos = todos;
 
 		// Filter by show completed
