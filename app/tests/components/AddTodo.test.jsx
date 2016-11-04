@@ -21,7 +21,7 @@ describe('AddTodo', () => {
 		var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
 		var $el = $(ReactDOM.findDOMNode(addTodo));
 
-		addTodo.refs.todo.value = todoText;
+		addTodo.refs.todoText.value = todoText;
 		TestUtils.Simulate.submit($el.find('form')[0]);
 
 		expect(spy).toHaveBeenCalledWith(action);
@@ -33,7 +33,7 @@ describe('AddTodo', () => {
 		var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy}/>);
 		var $el = $(ReactDOM.findDOMNode(addTodo));
 
-		addTodo.refs.todo.value = todoText;
+		addTodo.refs.todoText.value = todoText;
 		TestUtils.Simulate.submit($el.find('form')[0]);
 
 		expect(spy).toNotHaveBeenCalled();

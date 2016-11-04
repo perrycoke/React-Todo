@@ -47,7 +47,6 @@ describe('Reducers', () => {
 				createdAt: 124,
 				completedAt: 126
 			};
-
 			var action = {
 				type: 'TOGGLE_TODO',
 				id: 199
