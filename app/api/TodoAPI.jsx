@@ -1,24 +1,6 @@
 var $ = require('jquery');
 
 module.exports = {
-	setTodos(todos) {
-		if ($.isArray(todos)) {
-			localStorage.setItem('todos', JSON.stringify(todos));
-			return todos;
-		}
-	},
-	getTodos() {
-		var stringTodos = localStorage.getItem('todos');
-		var todos = [];
-
-		try {
-			todos = JSON.parse(stringTodos);
-		} catch (e) {
-
-		}
-
-		return $.isArray(todos) ? todos : [];
-	},
 	filterTodos(todos, showCompleted, searchText) {
 		searchText = searchText.toLowerCase();
 		var filteredTodos = todos;
@@ -30,9 +12,8 @@ module.exports = {
 
 		// Filter by searchText
 		filteredTodos = filteredTodos.filter((todo) => {
-			var todoText = todo.text.toLowerCase();
-
-			return searchText.length === 0 || todoText.indexOf(searchText) > -1;
+			var text = todo.text.toLowerCase();
+			return searchText.length === 0 || text.indexOf(searchText) > -1;
 		});
 
 		// Sort todos with non completed first
@@ -44,7 +25,11 @@ module.exports = {
 			} else {
 				return 0;
 			}
-		})
+		});
+
+		// if (filteredTodos.length === 0) {
+		// 	filteredTodos = '<p className="container__message">Nothing To Do</p>';
+		// }
 
 		return filteredTodos;
 	}
