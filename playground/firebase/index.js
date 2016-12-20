@@ -1,47 +1,37 @@
 import firebase from 'firebase';
 
 var config = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  storageBucket: process.env.STORAGE_BUCKET,
+  apiKey: "AIzaSyD_9fsTH8TiSdhYGD_4mzGbzwDxA7vW5w0",
+  authDomain: "mead-todo-app-23821.firebaseapp.com",
+  databaseURL: "https://mead-todo-app-23821.firebaseio.com",
+  storageBucket: "mead-todo-app-23821.appspot.com",
 };
 firebase.initializeApp(config);
 
 var firebaseRef = firebase.database().ref();
 
 firebaseRef.set({
-	app: {
-		name: 'Todo App',
-		version: '1.0'
-	},
-	isRunning: true,
-	user: {
-		name: 'Kezza',
-		age: 34
-	}
+  app: {
+    name: 'Todo App',
+    version: '1.0.0'
+  },
+  isRunning: true,
+  user: {
+    name: 'Andrew',
+    age: 25
+  }
 });
 
 var todosRef = firebaseRef.child('todos');
 
 todosRef.on('child_added', (snapshot) => {
-	console.log('child_added', snapshot.key, snapshot.val());
+  console.log('New todo added', snapshot.key, snapshot.val());
 });
 
-todosRef.on('child_changed', (snapshot) => {
-	console.log('child_changed', snapshot.key, snapshot.val());
+todosRef.push({
+  text: 'Todo 1'
 });
 
-todosRef.on('child_removed', (snapshot) => {
-	console.log('child_removed', snapshot.key, snapshot.val());
+todosRef.push({
+  text: 'Todo 2'
 });
-
-var newTodoRef = todosRef.push({
-	text: 'Walk the dog!'
-});
-
-var newTodoRef = todosRef.push({
-	text: 'Watch film'
-});
-
-console.log('Todo id', newNoteRef.key)

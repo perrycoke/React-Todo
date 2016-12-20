@@ -1,18 +1,18 @@
 import firebase from 'firebase';
 
 try {
-	var config = {
-	  apiKey: "AIzaSyCvA5MKedTsoSaWOGd7gQVMiaObxTyJF7Y",
-	  authDomain: "kezza-todo-app.firebaseapp.com",
-	  databaseURL: "https://kezza-todo-app.firebaseio.com",
-	  storageBucket: "kezza-todo-app.appspot.com",
-	  messagingSenderId: "661967960648"
-	};
+  var config = {
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
+  };
 
-	firebase.initializeApp(config);
+  firebase.initializeApp(config);
 } catch (e) {
 
-} 
+}
 
+export var githubProvider = new firebase.auth.GithubAuthProvider();
 export var firebaseRef = firebase.database().ref();
 export default firebase;
