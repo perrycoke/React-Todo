@@ -10,7 +10,6 @@ import router from 'app/router/';
 
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
-		console.log('state changed!')
 		store.dispatch(actions.login(user.uid));
 		store.dispatch(actions.startAddTodos());
 		hashHistory.push('/todos');
@@ -25,8 +24,6 @@ $(document).foundation();
 
 // App css
 require('style!css!sass!applicationStyles')
-
-
 
 ReactDOM.render(
   <Provider store={store}>
